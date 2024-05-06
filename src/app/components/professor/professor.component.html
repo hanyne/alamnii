@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -25,7 +24,7 @@
 					<div class="main-menu-header">
 						<img class="img-radius" src="/assets/icons/alamni.jpeg" alt="User-Profile-Image">
 						<div class="user-details">
-							<div id="more-details" class="text-white">Alamni <i class="fa fa-caret-down"></i>
+							<div id="more-details" class="text-white">Alamni
                             </div>
 						</div>
 					</div>
@@ -39,14 +38,14 @@
                       <span class="pcoded-mtext mx-2">Tableau de bord</span></a>
 					</li>
         <li class="nav-item pcoded-hasmenu">
-            <a href="add-user" class="nav-link "><span>
+            <a href="parent" class="nav-link "><span>
                 <img src="/assets/icons/add-user.png" class="icon"></span>
                <span class="pcoded-mtext mx-2"> Parent</span></a>
             <ul class="pcoded-submenu">
             </ul>
         </li>
         <li class="nav-item pcoded-hasmenu">
-          <a href="/dashboard" class="nav-link "><span>
+          <a href="/professor" class="nav-link "><span>
               <img src="/assets/icons/consent.png" class="icon"></span>
              <span class="pcoded-mtext mx-2"> Professeur</span></a>
           <ul class="pcoded-submenu">
@@ -86,17 +85,7 @@
 					</ul>
 					<ul class="navbar-nav ml-auto">
                       
-						<li>
-							<div class="dropdown" id="logout">
-                                <img  class="ic mr-1"src="../../../../assets/icons/profile.png">
-								<a class="dropdown-toggle mr-5" href="#" data-toggle="dropdown"></a>
-								<div class="dropdown-menu dropdown-menu-right notification">
-									<div class="noti-head" >
-										<h6 class="d-inline-block m-b-0"></h6>
-									</div>
-								</div>
-							</div>
-						</li>&nbsp;&nbsp;&nbsp;
+						
 						<li>
 							<div class="dropdown drp-user">
 								<a href="/login"  id="logout"
@@ -135,7 +124,6 @@
      
 </div>
 </div>
-
 <div class="container-fluid">
     <div class="row">
       <div class="container-fluid">
@@ -154,6 +142,7 @@
                             <th scope="col">Nom</th>
                             <th scope="col">Prénom</th>
                             <th scope="col">Email</th>
+                            <th scope="col">Category</th>
                             <th scope="col">Action</th>
                           </tr>
                         </thead>
@@ -162,6 +151,7 @@
                             <td>{{ professor.firstName }}</td>
                             <td>{{ professor.lastName }}</td>
                             <td>{{ professor.email }}</td>
+                            <td>{{ professor.category }}</td>
                             <td>
                               <button class="btn btn-danger mx-2" (click)="deleteProfessor(professor.id)">Supprimer</button>
                               <button class="btn btn-primary" (click)="updateProfessor(professor)">Mettre à jour</button>
@@ -189,6 +179,9 @@
                         </div>
                         <div class="form-group">
                           <input type="email" class="form-control" placeholder="Email" [(ngModel)]="newProfessor.email" name="email">
+                        </div>
+                        <div class="form-group">
+                          <input type="text" class="form-control" placeholder="category" [(ngModel)]="newProfessor.category" name="category">
                         </div>
                         <!-- HTML -->
   <button *ngIf="isAdding" type="submit" class="btn btn-primary">Ajouter Professeur</button>

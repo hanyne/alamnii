@@ -16,8 +16,7 @@ import { ToastrModule } from 'ngx-toastr';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { ProfessorComponent } from './components/professor/professor.component';
-import { EspaceParentComponent } from './components/espace-parent/espace-parent.component';
-import { EspaceProfessorComponent } from './components/espace-professor/espace-professor.component';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -28,8 +27,7 @@ import { EspaceProfessorComponent } from './components/espace-professor/espace-p
     ForgetPasswordComponent,
     ListeParentComponent,
     ProfessorComponent,
-    EspaceParentComponent,
-    EspaceProfessorComponent,
+
   ],
   imports: [
     BrowserModule,

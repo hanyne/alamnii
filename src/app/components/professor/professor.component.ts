@@ -12,7 +12,7 @@ import { AngularFirestore } from '@angular/fire/compat/firestore';
 })
 export class ProfessorComponent implements OnInit{
   professors$: Observable<Professor[]>;
-  newProfessor: Professor = { firstName: '', lastName: '', email: '' };
+  newProfessor: Professor = { firstName: '', lastName: '', email: '', category: '' };
   selectedProfessor: Professor;
   isAdding: boolean = true; // Initialize isAdding to true initially
 
@@ -35,19 +35,21 @@ export class ProfessorComponent implements OnInit{
       const password = prompt('Please enter the password for the new professor:');
 
       if (password) {
-        const { email, firstName, lastName } = this.newProfessor;
+        const { email, firstName, lastName, category } = this.newProfessor;
 
         const { user } = await this.fireauth.createUserWithEmailAndPassword(email, password);
 
         const professor: Professor = {
           firstName: firstName,
           lastName: lastName,
-          email: email
+          email: email,
+          category: category
+
         };
 
         await this.firestore.collection('professor').doc(user.uid).set(professor);
 
-        this.newProfessor = { firstName: '', lastName: '', email: '' };
+        this.newProfessor = { firstName: '', lastName: '', email: '' , category: ''};
 
         console.log('Professor ajouté avec succès');
       } else {
@@ -64,7 +66,7 @@ export class ProfessorComponent implements OnInit{
 
   updateProfessor(professor: Professor): void {
     this.selectedProfessor = { ...professor };
-    this.newProfessor = { firstName: professor.firstName, lastName: professor.lastName, email: professor.email };
+    this.newProfessor = { firstName: professor.firstName, lastName: professor.lastName, email: professor.email , category: professor.category };
     this.isAdding = false;
   }
 
@@ -73,10 +75,11 @@ export class ProfessorComponent implements OnInit{
       await this.firestore.collection('professor').doc(this.selectedProfessor.id).update({
         firstName: this.newProfessor.firstName,
         lastName: this.newProfessor.lastName,
-        email: this.newProfessor.email
+        email: this.newProfessor.email,
+        category: this.newProfessor.category
       });
 
-      this.newProfessor = { firstName: '', lastName: '', email: '' };
+      this.newProfessor = { firstName: '', lastName: '', email: '', category: '' };
       this.selectedProfessor = null;
       this.isAdding = true;
 
